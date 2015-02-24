@@ -7,9 +7,9 @@ var MiniPreview = {
   },
 
   generateURL: function(){
-    var key = 'czwq4ntdeuppgpz3r7ybwf7h';
+    var key     = 'czwq4ntdeuppgpz3r7ybwf7h';
     var baseUrl = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=';
-    var newUrl = baseUrl + key + '&q=' + MiniPreview.searchForm.val() + '&callback=?';
+    var newUrl  = baseUrl + key + '&q=' + MiniPreview.searchForm.val() + '&callback=?';
     return newUrl;
   },
 
@@ -27,13 +27,12 @@ var MiniPreview = {
   search: function () {
     var url = MiniPreview.generateURL();
     $.getJSON(url, function(response){
-      console.log(response);
       MiniPreview.appendResults(response);
     }).fail(function(err) {
-      console.log(err);
+      var errmsg = '<h1>An error has occured!!! Please reload the page and try again..</h1>'
+      $('#imageHolder').append( errmsg );
     });
   }
-
 };
 
 $(document).ready(MiniPreview.init);
